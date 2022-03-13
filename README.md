@@ -5,9 +5,9 @@
 Aplicación en  Spring Boot
 
 Expone endpoint GET para la consulta de precios desde la tabla PRICES según los parámetros:
-Fecha de consulta
-Identificador de producto
-Identificador de cadena
+- Fecha de consulta
+- Identificador de producto
+- Identificador de cadena
 Se utiliza base de datos en memoria H2 con datos de ejemplo
 
 
@@ -23,6 +23,3 @@ Se utiliza base de datos en memoria H2 con datos de ejemplo
 Se ha desplegado en Heroku
 
 - Swagger https://amaris-pdrgmz.herokuapp.com/swagger-ui.html
-
-
-
