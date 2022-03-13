@@ -8,6 +8,7 @@ Expone endpoint GET para la consulta de precios desde la tabla PRICES según los
 - Fecha de consulta
 - Identificador de producto
 - Identificador de cadena
+
 Se utiliza base de datos en memoria H2 con datos de ejemplo
 
 
