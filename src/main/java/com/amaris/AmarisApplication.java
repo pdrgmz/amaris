@@ -23,7 +23,7 @@ public class AmarisApplication {
 	private PricesRepository pricesRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(AmarisApplication.class, args);
+		SpringApplication.run(AmarisApplication.class);
 	}
 	
 	@PostConstruct
