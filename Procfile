@@ -1,1 +1,1 @@
-web: java -jar target/Cotufa-0.0.1-SNAPSHOT.war
+web: java -jar target/amaris-0.0.1-SNAPSHOT.jar
