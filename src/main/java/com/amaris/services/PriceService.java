@@ -5,7 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.amaris.models.TblPrice;
 import com.amaris.repositories.PricesRepository;
@@ -26,7 +28,7 @@ public class PriceService {
 		TblPrice price = prices.stream().max(Comparator.comparing(TblPrice::getPriority)).orElse(null);		
 		
 		if(price == null) {
-			return null;
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "Price not found");
 		}		
 			
 		return new PriceResponse(price);

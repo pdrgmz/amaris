@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
@@ -48,4 +49,16 @@ public class GlobalExceptionHandler {
 
 	    return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(HttpClientErrorException.class)
+	public ResponseEntity<Object> handleHttpClientErrorException(HttpClientErrorException ex) {
+		
+		Map<String, String> body = new HashMap<>();  
+
+	    body.put(ERROR, ex.getStatusText());
+
+	    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+	}
+	
+	
 }
