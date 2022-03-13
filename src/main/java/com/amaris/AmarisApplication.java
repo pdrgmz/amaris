@@ -22,8 +22,8 @@ public class AmarisApplication {
 	@Autowired
 	private PricesRepository pricesRepository;
 
-	public static void main() {
-		SpringApplication.run(AmarisApplication.class);
+	public static void main(String[] args) {
+		SpringApplication.run(AmarisApplication.class, args);
 	}
 	
 	@PostConstruct
