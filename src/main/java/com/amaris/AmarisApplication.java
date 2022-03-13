@@ -22,12 +22,12 @@ public class AmarisApplication {
 	@Autowired
 	private PricesRepository pricesRepository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(AmarisApplication.class, args);
+	public static void main() {
+		SpringApplication.run(AmarisApplication.class);
 	}
 	
 	@PostConstruct
-	public void init() throws NumberFormatException, ParseException{
+	public void init() throws ParseException{
 		
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		
