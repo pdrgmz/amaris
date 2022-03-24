@@ -1,11 +1,12 @@
 package com.amaris.controllers;
 
-import java.text.ParseException;
+import java.time.LocalDateTime;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.amaris.exceptions.PriceNotFoundException;
 import com.amaris.responses.PriceResponse;
 import com.amaris.services.PriceService;
+import com.amaris.utils.Constants;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,10 +39,10 @@ public class PricesController {
 	public ResponseEntity<PriceResponse> getPrices(
 			
 			@Valid @NotBlank @PathVariable("product_id") Integer productId,		
-			
-			@Valid @NotBlank @RequestParam String date,
+																		
+			@Valid @NotBlank @RequestParam @DateTimeFormat(pattern = Constants.DATE_FORMAT) LocalDateTime date,
 			@Valid @NotBlank @RequestParam Integer brandId		
-			) throws ParseException{
+			) throws PriceNotFoundException{
 				
 		return  new ResponseEntity<>(priceBussines.getPrice(productId, brandId, date), HttpStatus.OK) ;
 	}

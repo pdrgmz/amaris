@@ -1,6 +1,8 @@
 package com.amaris;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
@@ -14,7 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.amaris.models.TblPrice;
 import com.amaris.repositories.PricesRepository;
-import com.amaris.utils.Utils;
+import com.amaris.utils.Constants;
 
 @SpringBootApplication
 public class AmarisApplication {
@@ -44,19 +46,20 @@ public class AmarisApplication {
 	1         2020-06-15-00.00.00                        2020-06-15-11.00.00                        3                        35455                1                        30.50            EUR
 	
 	1         2020-06-15-16.00.00                        2020-12-31-23.59.59                        4                        35455                1                        38.95            EUR
-	
-	
+		
 	*/
 		
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT);
+               
 		List<TblPrice> prices = Stream.of(
-				new TblPrice(null, 1 , Utils.newDate("2020-06-14-00.00.00") , Utils.newDate("2020-12-31-23.59.59") , 1 ,  35455 , 0 , Float.parseFloat("35.50") , "EUR"),
-				new TblPrice(null, 1 , Utils.newDate("2020-06-14-15.00.00") , Utils.newDate("2020-06-14-18.30.00") , 2 ,  35455 , 1 , Float.parseFloat("25.45") , "EUR"),
-				new TblPrice(null, 1 , Utils.newDate("2020-06-15-00.00.00") , Utils.newDate("2020-06-15-11.00.00") , 3 ,  35455 , 1 , Float.parseFloat("30.50") , "EUR"),
-				new TblPrice(null, 1 , Utils.newDate("2020-06-15-16.00.00") , Utils.newDate("2020-12-31-23.59.59") , 4 ,  35455 , 1 , Float.parseFloat("29.95") , "EUR")				
+				new TblPrice(null, 1 , LocalDateTime.parse("2020-06-14-00.00.00", formatter) , LocalDateTime.parse("2020-12-31-23.59.59", formatter) , 1 ,  35455 , 0 , Float.parseFloat("35.50") , "EUR"),
+				new TblPrice(null, 1 , LocalDateTime.parse("2020-06-14-15.00.00", formatter) , LocalDateTime.parse("2020-06-14-18.30.00", formatter) , 2 ,  35455 , 1 , Float.parseFloat("25.45") , "EUR"),
+				new TblPrice(null, 1 , LocalDateTime.parse("2020-06-15-00.00.00", formatter) , LocalDateTime.parse("2020-06-15-11.00.00", formatter) , 3 ,  35455 , 1 , Float.parseFloat("30.50") , "EUR"),
+				new TblPrice(null, 1 , LocalDateTime.parse("2020-06-15-16.00.00", formatter) , LocalDateTime.parse("2020-12-31-23.59.59", formatter) , 4 ,  35455 , 1 , Float.parseFloat("29.95") , "EUR")				
 				).collect(Collectors.toList());
 		
-		
-		
+			
 		pricesRepository.saveAll(prices);
 		
 		

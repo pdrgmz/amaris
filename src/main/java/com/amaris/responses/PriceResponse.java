@@ -1,6 +1,6 @@
 package com.amaris.responses;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.amaris.models.TblPrice;
 import com.amaris.utils.Constants;
@@ -19,11 +19,11 @@ public class PriceResponse {
 	
 	@JsonProperty("start_date")
 	@JsonFormat(pattern=Constants.DATE_FORMAT)
-	private Date startDate;
+	private LocalDateTime startDate;
 	
 	@JsonProperty("end_date")
 	@JsonFormat(pattern=Constants.DATE_FORMAT)
-	private Date endDate;
+	private LocalDateTime endDate;
 	
 	@JsonProperty("price_list")
 	private Integer priceList;

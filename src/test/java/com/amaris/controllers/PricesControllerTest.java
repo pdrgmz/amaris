@@ -168,5 +168,30 @@ class PricesControllerTest {
 				);	
 		
 	}
-
+	
+	@Test
+	void test6GetPricesNotFound() throws Exception {		
+		
+		String productId = "35455";
+		String brandId = "1";
+		String date =  "3020-06-16-21.00.00";
+		
+		String URI ="/products/" + productId + "/prices?brandId=" + brandId + "&date=" + date;
+		
+		System.out.println(URI);
+		
+		String expected = "{\r\n"
+				+ "	    \"error\": \"Price not found\"\r\n"
+				+ "	}";
+		
+		mockMvc.perform(get(URI))
+		.andDo(print())
+		.andExpect(status().is4xxClientError())
+		.andExpect(
+				content().json(expected)
+				);	
+		
+	}
+	
+	
 }

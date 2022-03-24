@@ -1,35 +1,28 @@
 package com.amaris.services;
 
-import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
+import com.amaris.exceptions.PriceNotFoundException;
 import com.amaris.models.TblPrice;
 import com.amaris.repositories.PricesRepository;
 import com.amaris.responses.PriceResponse;
-import com.amaris.utils.Utils;
 
 @Service
 public class PriceService {
 	
 	@Autowired
-	private PricesRepository pricesRepository;
+	private PricesRepository pricesRepository;	
 	
-	
-	public PriceResponse getPrice(Integer productId, Integer brandId, String date) throws ParseException{	
+	public PriceResponse getPrice(Integer productId, Integer brandId, LocalDateTime date) throws PriceNotFoundException{	
 		
-		List<TblPrice> prices = pricesRepository.findPrice(productId, brandId, Utils.newDate(date));
+		List<TblPrice> prices = pricesRepository.findPrice(productId, brandId, date );
 		
-		TblPrice price = prices.stream().max(Comparator.comparing(TblPrice::getPriority)).orElse(null);		
-		
-		if(price == null) {
-			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "Price not found");
-		}		
+		TblPrice price = prices.stream().max(Comparator.comparing(TblPrice::getPriority)).orElseThrow(() -> new PriceNotFoundException("Price not found"));
 			
 		return new PriceResponse(price);
 		

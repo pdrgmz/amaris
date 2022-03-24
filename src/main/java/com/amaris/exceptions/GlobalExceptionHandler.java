@@ -1,6 +1,7 @@
 package com.amaris.exceptions;
 
 import java.text.ParseException;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class GlobalExceptionHandler {
 
 	    return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
-	
+		
 	@ExceptionHandler(ParseException.class)
 	public ResponseEntity<Object> handleParseException(ParseException ex) {
 		
@@ -60,5 +61,27 @@ public class GlobalExceptionHandler {
 	    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(DateTimeParseException.class)
+	public ResponseEntity<Object> handleDateTimeParseException(DateTimeParseException ex) {
+		
+		Map<String, String> body = new HashMap<>();  
+
+	    body.put(ERROR, THE_PARAMETER + "date' with value '" + ex.getParsedString() + "' could not be parsed at index " + ex.getErrorIndex());
+	    ex.printStackTrace();
+
+	    return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(PriceNotFoundException.class)
+	public ResponseEntity<Object> handlePriceNotFoundException(PriceNotFoundException ex) {
+		
+		Map<String, String> body = new HashMap<>();  
+
+	    body.put(ERROR, ex.getMessage());
+	    ex.printStackTrace();
+
+	    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+	}	
+
 	
 }

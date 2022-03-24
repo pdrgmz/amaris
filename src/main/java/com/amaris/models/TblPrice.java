@@ -1,6 +1,6 @@
 package com.amaris.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,10 +29,10 @@ public class TblPrice {
 	private Integer brandId;
 	
 	@Column(name = "START_DATE")
-	private Date startDate;	
+	private LocalDateTime startDate;	
 	
 	@Column(name = "END_DATE")
-	private Date endDate;
+	private LocalDateTime endDate;
 	
 	@Column(name = "PRICE_LIST")
 	private Integer priceList;
