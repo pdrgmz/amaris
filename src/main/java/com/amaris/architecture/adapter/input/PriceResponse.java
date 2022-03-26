@@ -1,8 +1,7 @@
-package com.amaris.responses;
+package com.amaris.architecture.adapter.input;
 
 import java.time.LocalDateTime;
 
-import com.amaris.models.TblPrice;
 import com.amaris.utils.Constants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,14 +36,4 @@ public class PriceResponse {
 	@JsonProperty("curr")
 	private String curr;	
 	
-	public PriceResponse( TblPrice p ){		
-		this.brandId = p.getBrandId();
-		this.startDate = p.getStartDate();
-		this.endDate = p.getEndDate();
-		this.priceList = p.getPriceList();
-		this.productId = p.getProductId();
-		this.price = p.getPrice();
-		this.curr = p.getCurr();
-	}
-
 }

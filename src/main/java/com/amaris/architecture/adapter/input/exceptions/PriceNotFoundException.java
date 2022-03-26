@@ -1,4 +1,4 @@
-package com.amaris.exceptions;
+package com.amaris.architecture.adapter.input.exceptions;
 
 public class PriceNotFoundException extends Exception{
 	

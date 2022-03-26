@@ -1,6 +1,5 @@
 package com.amaris;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -14,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.amaris.models.TblPrice;
-import com.amaris.repositories.PricesRepository;
+import com.amaris.architecture.adapter.output.PricesRepository;
+import com.amaris.architecture.adapter.output.TblPrice;
 import com.amaris.utils.Constants;
 
 @SpringBootApplication
@@ -29,7 +28,7 @@ public class AmarisApplication {
 	}
 	
 	@PostConstruct
-	public void init() throws ParseException{
+	public void init(){
 		
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		
