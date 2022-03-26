@@ -1,4 +1,4 @@
-package com.amaris.exceptions;
+package com.amaris.architecture.adapter.input.exceptions;
 
 import java.text.ParseException;
 import java.time.format.DateTimeParseException;

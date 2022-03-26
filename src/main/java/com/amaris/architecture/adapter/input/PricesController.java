@@ -1,4 +1,4 @@
-package com.amaris.controllers;
+package com.amaris.architecture.adapter.input;
 
 import java.time.LocalDateTime;
 
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.amaris.exceptions.PriceNotFoundException;
-import com.amaris.responses.PriceResponse;
-import com.amaris.services.PriceService;
+import com.amaris.application.service.PriceService;
+import com.amaris.architecture.adapter.input.exceptions.PriceNotFoundException;
+import com.amaris.architecture.port.input.PriceUseCase;
 import com.amaris.utils.Constants;
 
 import io.swagger.annotations.Api;
@@ -31,8 +31,7 @@ import io.swagger.annotations.ApiOperation;
 public class PricesController {
 	
 	@Autowired
-	PriceService priceBussines;
-	
+	PriceUseCase priceUseCase;	
 	
 	@ApiOperation(value = "Get prices")
 	@GetMapping(path = "/{product_id}/prices")
@@ -44,7 +43,7 @@ public class PricesController {
 			@Valid @NotBlank @RequestParam Integer brandId		
 			) throws PriceNotFoundException{
 				
-		return  new ResponseEntity<>(priceBussines.getPrice(productId, brandId, date), HttpStatus.OK) ;
+		return  new ResponseEntity<>(priceUseCase.findPrice(productId, brandId, date), HttpStatus.OK) ;
 	}
 	
 }

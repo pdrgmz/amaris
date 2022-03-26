@@ -1,4 +1,4 @@
-package com.amaris.models;
+package com.amaris.architecture.adapter.output;
 
 import java.time.LocalDateTime;
 
