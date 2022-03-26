@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.amaris.application.domain.Price;
+import com.amaris.application.domain.PriceDTO;
 import com.amaris.architecture.port.output.PricePort;
 
 import lombok.NoArgsConstructor;
@@ -25,10 +25,10 @@ public class PriceAdapter implements PricePort{
 	private PriceMapper priceMapper;
 
 	@Override
-	public List<Price> findPrice(Integer productId, Integer brandId, LocalDateTime date) {	
+	public List<PriceDTO> findPrice(Integer productId, Integer brandId, LocalDateTime date) {	
 		List<TblPrice> tblPrices = priceRepository.findPrice(productId, brandId, date);
 		
-		List<Price> prices = new ArrayList<>();
+		List<PriceDTO> prices = new ArrayList<>();
 		for (TblPrice tblPrice : tblPrices) {			
 			prices.add(priceMapper.toDomain(tblPrice));			
 		}		

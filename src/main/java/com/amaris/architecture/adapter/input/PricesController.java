@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.amaris.application.service.PriceService;
 import com.amaris.architecture.adapter.input.exceptions.PriceNotFoundException;
 import com.amaris.architecture.port.input.PriceUseCase;
 import com.amaris.utils.Constants;

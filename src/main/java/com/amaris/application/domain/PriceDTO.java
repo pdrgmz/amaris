@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Price {	
+public class PriceDTO {	
 	
 	private Integer id;	
 	private Integer brandId;

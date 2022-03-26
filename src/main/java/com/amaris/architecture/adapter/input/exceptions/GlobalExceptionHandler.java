@@ -67,7 +67,6 @@ public class GlobalExceptionHandler {
 		Map<String, String> body = new HashMap<>();  
 
 	    body.put(ERROR, THE_PARAMETER + "date' with value '" + ex.getParsedString() + "' could not be parsed at index " + ex.getErrorIndex());
-	    ex.printStackTrace();
 
 	    return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 	}
@@ -78,7 +77,6 @@ public class GlobalExceptionHandler {
 		Map<String, String> body = new HashMap<>();  
 
 	    body.put(ERROR, ex.getMessage());
-	    ex.printStackTrace();
 
 	    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}	

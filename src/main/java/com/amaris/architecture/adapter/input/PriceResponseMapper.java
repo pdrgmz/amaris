@@ -2,12 +2,12 @@ package com.amaris.architecture.adapter.input;
 
 import org.springframework.stereotype.Component;
 
-import com.amaris.application.domain.Price;
+import com.amaris.application.domain.PriceDTO;
 
 @Component
 public class PriceResponseMapper {	
 
-	public PriceResponse toWeb(Price p) {
+	public PriceResponse toWeb(PriceDTO p) {
 		
 		PriceResponse price = new PriceResponse();
 			

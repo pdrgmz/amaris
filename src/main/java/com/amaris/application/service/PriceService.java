@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.amaris.application.domain.Price;
+import com.amaris.application.domain.PriceDTO;
 import com.amaris.architecture.adapter.input.PriceResponse;
 import com.amaris.architecture.adapter.input.PriceResponseMapper;
 import com.amaris.architecture.adapter.input.exceptions.PriceNotFoundException;
@@ -29,9 +29,9 @@ public class PriceService implements PriceUseCase{
 	@Override
 	public PriceResponse findPrice(Integer productId, Integer brandId, LocalDateTime date) throws PriceNotFoundException {
 		
-		List<Price> prices = pricePort.findPrice(productId, brandId, date);
+		List<PriceDTO> prices = pricePort.findPrice(productId, brandId, date);
 		
-		Price price = prices.stream().max(Comparator.comparing(Price::getPriority))
+		PriceDTO price = prices.stream().max(Comparator.comparing(PriceDTO::getPriority))
 			.orElseThrow(() -> new PriceNotFoundException("Price not found"));
 		
 		return priceResponseMapper.toWeb(price);	

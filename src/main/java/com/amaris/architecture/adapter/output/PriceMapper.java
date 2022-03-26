@@ -2,14 +2,14 @@ package com.amaris.architecture.adapter.output;
 
 import org.springframework.stereotype.Component;
 
-import com.amaris.application.domain.Price;
+import com.amaris.application.domain.PriceDTO;
 
 @Component
 public class PriceMapper {
 	
-	public Price toDomain(TblPrice p) {
+	public PriceDTO toDomain(TblPrice p) {
 		
-		Price price = new Price();
+		PriceDTO price = new PriceDTO();
 		
 		price.setBrandId(p.getBrandId());
 		price.setStartDate(p.getStartDate());
